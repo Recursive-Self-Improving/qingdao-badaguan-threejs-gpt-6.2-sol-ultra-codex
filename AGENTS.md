@@ -7,3 +7,4 @@
 - Architecture batches share geometry layouts and materials when merging with Three.js BufferGeometryUtils. Static shadows are rendered again when switching lighting presets.
 - Vite builds JavaScript without compiling its GLSL. Check WebGL errors on a browser render or compile shaders as GLSL ES 3.00 after editing them. GLSL reserves `patch` as a keyword.
 - The bundled Noto TC fonts are subsetted to the text used on the site. Refresh the subsets when adding copy with new Chinese characters. The CSS includes system font fallbacks.
+- The GitHub Pages workflow builds Vite with `--base=./` so the artifact works under a repository subpath. Use Vite-processed or base-aware URLs for new public assets.

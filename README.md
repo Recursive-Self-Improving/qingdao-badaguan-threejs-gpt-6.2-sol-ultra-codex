@@ -13,6 +13,12 @@ npm run dev
 
 瀏覽 Vite 顯示的本機網址。執行 `npm run build` 會在 `dist/` 產生靜態網站，可用 `npm run preview` 預覽。
 
+## 部署至 GitHub Pages
+
+在 GitHub 儲存庫的 **Settings → Pages → Build and deployment** 中，將 **Source** 設為 **GitHub Actions**。推送至 `master` 後會自動部署，也可在 **Actions → Deploy to GitHub Pages** 選擇 `master` 手動執行。
+
+工作流程以相對路徑建置 `dist/`，讓網站可在儲存庫子路徑下運作。部署完成後，工作流程會顯示網站網址。
+
 ## 操作
 
 | 操作 | 按鍵或手勢 |
