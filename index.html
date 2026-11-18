@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#1b2019">
+    <meta name="description" content="走進青島八大關的海濱街區，自由探索歷史別墅、林蔭街巷與太平灣。">
+    <title>青島八大關 · 海風漫遊</title>
+    <link rel="icon" type="image/svg+xml" href="/mark.svg">
+    <link rel="preload" as="image" href="/images/badaguan-cover.webp">
+  </head>
+  <body data-view="cover">
+    <div class="environment">
+      <div class="scene" id="scene"></div>
+      <div class="cover-image"></div>
+      <div class="shade"></div>
+    </div>
+    <header class="topbar">
+      <button type="button" class="brand" id="home" aria-label="返回八大關封面">
+        <img class="brand-mark" src="/mark.svg" alt="">
+        <span><strong>八大關漫遊</strong><small>BADAGUAN, QINGDAO</small></span>
+      </button>
+      <nav class="main-nav" aria-label="遊覽模式">
+        <button class="active" type="button" id="walk-tab"><i data-icon="compass"></i>自由漫遊</button>
+        <button type="button" id="map-tab" aria-haspopup="dialog"><i data-icon="map"></i>景點地圖</button>
+      </nav>
+      <div class="top-actions">
+        <button type="button" class="icon-button" id="sound" aria-label="開啟海浪聲" aria-pressed="false"><i data-icon="mute"></i></button>
+        <button type="button" class="icon-button" id="fullscreen" aria-label="全螢幕" aria-pressed="false"><i data-icon="expand"></i></button>
+        <button type="button" class="help-button" id="help" aria-label="操作指南" aria-haspopup="dialog"><i data-icon="help"></i><span>操作指南</span></button>
+      </div>
+    </header>
+
+    <main class="viewport">
+      <section class="intro" aria-labelledby="main-title">
+        <p class="eyebrow"><i data-icon="pin"></i>山東 · 青島 · 市南</p>
+        <h1 id="main-title">青島八大關</h1>
+        <p class="english-title"><span></span> BADAGUAN <b>·</b> QINGDAO</p>
+        <p class="intro-copy">穿過紅瓦別墅與林蔭街道，<br>沿海風走到太平灣。用自己的步調，<br class="copy-break">探訪青島的海濱老街。</p>
+        <button type="button" class="start-button" id="start"><i data-icon="footsteps"></i><span>開始漫遊</span><i data-icon="arrow"></i></button>
+        <p class="cover-credit">入口意象圖</p>
+      </section>
+
+      <aside class="landmarks glass" id="landmarks" aria-labelledby="landmarks-title">
+        <div class="panel-heading">
+          <div><span>POINTS OF INTEREST</span><h2 id="landmarks-title">沿途景點</h2></div>
+          <div class="panel-heading-icon"><i data-icon="pin"></i></div>
+        </div>
+        <div class="point-list">
+          <button type="button" class="point" data-place="huashi">
+            <img src="/images/huashi.webp" alt="" width="68" height="52">
+            <span><strong>花石樓</strong><small>花崗岩築成的海濱別墅</small></span><i data-icon="chevron"></i>
+          </button>
+          <button type="button" class="point" data-place="princess">
+            <img src="/images/princess.webp" alt="" width="68" height="52">
+            <span><strong>公主樓</strong><small>居庸關路的北歐風別墅</small></span><i data-icon="chevron"></i>
+          </button>
+          <button type="button" class="point" data-place="beach">
+            <img src="/images/beach.webp" alt="" width="68" height="52">
+            <span><strong>第二海水浴場</strong><small>太平灣畔的沙灘與礁石</small></span><i data-icon="chevron"></i>
+          </button>
+        </div>
+        <button type="button" class="map-link" id="panel-map" aria-haspopup="dialog"><i data-icon="map"></i>查看景點地圖<i data-icon="arrow-up"></i></button>
+      </aside>
+
+      <div class="visit-note glass" id="visit-note" hidden>
+        <div><span id="visit-kicker"></span><h2 id="visit-title"></h2><p id="visit-copy"></p></div>
+        <button type="button" class="icon-button" id="close-note" aria-label="關閉景點介紹"><i data-icon="close"></i></button>
+      </div>
+      <div class="touch-pad" aria-label="觸控移動">
+        <button type="button" data-move="KeyW" aria-label="向前">▲</button>
+        <button type="button" data-move="KeyA" aria-label="向左">◀</button>
+        <button type="button" data-move="KeyS" aria-label="向後">▼</button>
+        <button type="button" data-move="KeyD" aria-label="向右">▶</button>
+      </div>
+      <p class="status glass" id="status" role="status" hidden></p>
+    </main>
+
+    <footer class="hud">
+      <div class="where">
+        <div class="compass-face" aria-hidden="true"><span>N</span><i id="needle" data-icon="needle"></i></div>
+        <div><strong id="location">山海關路</strong><small>36°03′N &nbsp; 120°21′E</small></div>
+      </div>
+      <div class="key-guide" aria-hidden="true">
+        <span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><em>移動</em></span>
+        <span><i data-icon="mouse"></i><em>拖曳視角</em></span>
+        <span><kbd class="wide-key">Shift</kbd><em>快走</em></span>
+      </div>
+      <div class="time-control">
+        <button type="button" class="time-button glass" id="time" aria-expanded="false" aria-controls="time-menu">
+          <i data-icon="sunset"></i><span><small>場景光影</small><strong id="time-label">金色夕陽</strong></span><i data-icon="up"></i>
+        </button>
+        <div class="time-menu glass" id="time-menu" hidden>
+          <button type="button" data-time="day" aria-pressed="false"><i data-icon="sun"></i>晴朗午後</button>
+          <button type="button" data-time="golden" aria-pressed="true"><i data-icon="sunset"></i>金色夕陽</button>
+          <button type="button" data-time="dusk" aria-pressed="false"><i data-icon="moon"></i>藍調暮色</button>
+        </div>
+      </div>
+    </footer>
+
+    <dialog class="dialog glass" id="help-dialog" aria-labelledby="help-title">
+      <div class="dialog-heading"><div><h2 id="help-title">操作指南</h2><p>在八大關的街巷與海岸自由散步</p></div><button type="button" class="icon-button" data-close aria-label="關閉"><i data-icon="close"></i></button></div>
+      <dl class="help-list">
+        <div><dt>走動</dt><dd><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> 或方向鍵</dd></div>
+        <div><dt>轉動視角</dt><dd>拖曳滑鼠，或用 <kbd>Q</kbd> <kbd>E</kbd> 向左、向右看，<kbd>R</kbd> <kbd>F</kbd> 抬頭、低頭</dd></div>
+        <div><dt>快走</dt><dd>按住 <kbd>Shift</kbd></dd></div>
+        <div><dt>觸控</dt><dd>按方向鍵移動，在畫面上滑動以環顧四周</dd></div>
+      </dl>
+      <details class="references">
+        <summary>場景與資料來源</summary>
+        <p>場景以八大關的真實地貌與地標為參考，簡化了道路距離、地形與建築細節。</p>
+        <ul>
+          <li><a href="https://www.qingdao.gov.cn/zwgk/xxgk/whly/gkml/gzxx/202601/t20260126_10481040.shtml" target="_blank" rel="noopener">青島政務網 · 八大關建築</a></li>
+          <li><a href="https://www.qingdao.gov.cn/zwgk/xxgk/whly/gkml/gzxx/202606/t20260616_10636451.shtml" target="_blank" rel="noopener">青島政務網 · 第二海水浴場</a></li>
+        </ul>
+        <div id="photo-credits"></div>
+      </details>
+    </dialog>
+    <dialog class="dialog map-dialog glass" id="map-dialog" aria-labelledby="map-title">
+      <div class="dialog-heading"><div><h2 id="map-title">八大關景點地圖</h2><p>選擇地標前往觀景點。地圖為漫遊場景示意。</p></div><button type="button" class="icon-button" data-close aria-label="關閉"><i data-icon="close"></i></button></div>
+      <div class="map-frame">
+        <canvas id="map-canvas" width="650" height="400" aria-hidden="true"></canvas>
+        <span class="map-north" aria-hidden="true">N <i data-icon="needle"></i></span>
+        <div class="map-pins" id="map-pins"></div>
+      </div>
+      <div class="map-destinations" id="map-destinations"></div>
+    </dialog>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
